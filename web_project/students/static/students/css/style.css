@@ -1,0 +1,772 @@
+.nav_bar{
+    background-color:#2d394b;
+    color: skyblue;
+    display: flex;   
+}
+
+.nav_bar :hover{
+    color:white ;
+}
+
+.frst_icons{
+    margin-left: 30%;
+    top: 0;
+    position: fixed;
+}
+
+
+.custom-dark-navbar {
+    background-image: url("C:\Users\Lenovo\Downloads\Jumana\FINAL_PRJCT\web_project\macanda\static\macanda\img\Gemini_Generated_Image_w6u9igw6u9igw6u9.png");
+     background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+/* ========= EXISTING CSS (UNCHANGED) ========= */
+/* SECOND NAVBAR underline  */
+.navbar-nav.me-auto > .nav-item > .nav-link {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0;
+}
+
+.navbar-nav.me-auto > .nav-item > .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background-color: #8a2be2;
+    transition: width 0.25s ease;
+    z-index: 3;
+}
+
+.navbar-nav.me-auto > .nav-item > .nav-link:hover::after {
+    width: 100%;
+    bottom: -8px;
+}
+
+
+/* ========= NEW MEGA MENU STYLES (ADDED) ========= */
+
+.mega-item {
+    position: static;
+}
+
+.mega-menu {
+    position: absolute;
+    left: 2%;
+    top: 100%;
+    width: 50%;
+    background: #fff;
+    display: none;
+    padding: 30px 60px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    z-index: 1000;
+}
+
+.mega-item:hover .mega-menu {
+    display: flex;
+}
+
+.mega-menu {
+    display: none;
+    gap: 80px;
+
+}
+
+.mega-col h6 {
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #450a7c;
+}
+
+.mega-col a {
+    display: block;
+    color: #555;
+    text-decoration: none;
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+.mega-col a:hover {
+    color: #450a7c;
+}
+
+/* ========= NEW MEGA MENU STYLES (RENAMED CLASSES ONLY) ========= */
+
+.jewelcandle-item {
+    position: static;
+}
+
+.jewelcandle-menu {
+    position: absolute;
+    left: 2%;
+    top: 100%;
+    width: 15%;
+    margin-left: 22rem;
+    background: #fff;
+    display: none;
+    padding: 10px 0;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    z-index: 1000;
+    text-align: center;          /* CENTER TEXT */
+}
+
+.jewelcandle-item:hover .jewelcandle-menu {
+    display: block;              /* block is enough */
+}
+
+/* TARGET YOUR ACTUAL HTML CLASS */
+.jewelcandle-section a {
+    display: block;              /* makes it box-like */
+    text-decoration: none;       /* REMOVE link underline */
+    color: #888;                 /* DEFAULT GREY */
+    font-size: 14px;
+    padding: 6px 0;            
+    cursor: pointer;
+    text-align: left;
+    padding: 6px 0 6px 20px;
+}
+
+.jewelcandle-section a:hover {
+    color: #450a7c;              /* HOVER COLOR */
+}
+
+.more-item {
+    position: static;
+}
+
+.more-menu {
+    position: absolute;
+    left: 2%;
+    top: 100%;
+    width: 15%;
+    margin-left: 30rem;
+    background: #fff;
+    display: none;
+    padding: 10px 0;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    z-index: 1000;
+    text-align: center;
+}
+
+.more-item:hover .more-menu {
+    display: block;
+}
+
+/* TARGET YOUR ACTUAL HTML CLASS */
+.more-section a {
+    display: block;
+    text-decoration: none;
+    color: #888;
+    font-size: 14px;
+    padding: 6px 0 6px 20px;
+    cursor: pointer;
+    text-align: left;
+}
+
+.more-section a:hover {
+    color: #450a7c;
+}
+
+
+
+
+/* keep dropdown in DOM always */
+.myaccount-dropdown .dropdown-menu {
+    display: block;                 /* override bootstrap */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-18px);
+    margin-left: 30%;
+    transition: opacity 0.8s ease, transform 0.8s ease, visibility 0.8s ease;
+    border-style: none;
+    border-radius: 1px;
+}
+
+/* when opened */
+.myaccount-dropdown .dropdown-menu.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.myaccount-dropdown .dropdown-menu.show :hover{
+    background-color: rgb(145, 27, 145);
+    color: white;
+}
+
+
+
+
+/* ============================= */
+/* TEMPLATE MONSTER DROPDOWNS */
+/* (Language / Currency ONLY) */
+/* ============================= */
+
+.tm-dropdown .dropdown-menu {
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+
+    margin-top: 10px;
+    padding: 8px 0;
+    min-width: 110px;
+    min-height: 10px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    border-radius: 1px;
+    transform: translateY(-16px);
+    transition: opacity 0.8s ease, transform 0.8s ease, visibility 0.8s ease;
+}
+
+/* open state */
+.tm-dropdown .dropdown-menu.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* ============================= */
+/* ITEMS — ONE BY ONE ANIMATION */
+/* ============================= */
+
+.tm-dropdown .dropdown-item {
+    padding: 8px 20px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #333;
+
+    opacity: 0;
+    transform: translateY(-10px);
+
+    transition:
+        opacity 0.35s ease,
+        transform 0.35s ease;
+}
+
+/* visible when menu opens */
+.tm-dropdown .dropdown-menu.show .dropdown-item {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ============================= */
+/* HOVER STYLE */
+/* ============================= */
+
+.tm-dropdown .dropdown-item:hover {
+    background-color: rgb(153, 45, 153);
+    color: white;
+}
+
+/* caret size */
+.tm-dropdown .dropdown-toggle::after {
+    font-size: 11px;
+    margin-left: 1px;
+}
+
+.tm-dropdown .dropdown-menu {
+    padding: 4px 0;
+}
+.tm-dropdown .dropdown-item {
+    padding: 4px 16px;
+}
+
+
+/* Currency dropdown — smaller width only */
+.currency-dropdown .dropdown-menu {
+    min-width: 80px;
+}
+
+.currency-dropdown .dropdown-menu {
+    padding: 4px 0;
+}
+.currency-dropdown .dropdown-item {
+    padding: 4px 16px;
+}
+
+
+/* ================= FOOTER ================= */
+
+.footer-wrap {
+    background-color: transparent;
+    padding: 60px 80px;
+    color: #fff;
+}
+
+/* Footer layout */
+.footer-table {
+    width: 100%;
+}
+
+.footer-table td {
+    vertical-align: top;
+    padding-right: 60px;
+}
+
+/* Headings */
+.footer-table h5 {
+    font-size: 16px;
+    margin-bottom: 18px;
+    font-weight: 600;
+}
+
+/* Text links */
+.footer-table p {
+    font-size: 14px;
+    margin: 6px 0;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.footer-table p:hover {
+    color: #fff;
+}
+
+/* Newsletter column width control */
+.newsletter {
+    max-width: 260px;
+}
+
+/* Input + button inline */
+.newsletter-form {
+    display: flex;
+    margin-top: 10px;
+}
+
+/* Input style */
+.newsletter-form input {
+    flex: 1;
+    padding: 8px 10px;
+    font-size: 13px;
+    border: none;
+    outline: none;
+}
+
+/* Button style — TEMPLATE COLOR */
+.newsletter-form button {
+    padding: 8px 14px;
+    background-color: #8f2aa9; /* TemplateMonster purple */
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+/* Button hover */
+.newsletter-form button:hover {
+    background-color: #7a2290;
+}
+
+/* Reduce extra space below */
+.newsletter p {
+    font-size: 12px;
+    color: #bbb;
+    margin-top: 12px;
+    line-height: 1.4;
+}
+
+.newsletter p:hover {
+    color: #bbb;
+}
+
+.footer-social {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    padding: 25px 0;
+}
+
+.footer-social a {
+    width: 40px;
+    height: 40px;
+    background-color: #2b2b2b;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #cfcfcf;
+    font-size: 16px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-social a:hover {
+    background-color:#7a2290 ;
+    color: #fff;
+}
+
+
+
+.carousel {
+  min-height: 300px;
+}
+
+.header-bg {
+    background-image: url("../images/main-banner-1-1903x903.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 300px;
+}
+
+
+.header-bg .navbar {
+    background-color: transparent ;
+}
+
+/* ============================= */
+/* POPULAR_TEXT */
+/* ============================= */
+
+.popular_prct{
+    background-image: url(https://codezeel.com/opencart/OPC02/OPC020049/catalog/view/theme/Candles/image/codezeel/divider.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 40px 0; 
+}
+
+
+/* Popular product tabs */
+.popular_text{
+    text-align: center;
+    margin-bottom: 3%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Tab text styling */
+.popular_text .tab{
+    cursor: pointer;
+    margin: 0 15px;
+    font-weight: 600;
+}
+
+.popular_text :hover{
+    color: blueviolet;
+}
+
+
+
+/* ============================= */
+/* PRODUCT CAROUSEL – TEMPLATE STYLE */
+/* ============================= */
+
+/* Allow side cards to be visible */
+#productCarousel .carousel-inner {
+    overflow: visible;
+}
+
+/* Center the row and reduce total width */
+#productCarousel .carousel-item .row {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Reduce spacing so side cards peek */
+#productCarousel .col-md-3 {
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+/* Product card styling */
+#productCarousel .product-card {
+    background: #ffffff;
+    border: 1px solid #eeeeee;
+    padding: 15px;
+    transition: box-shadow 0.3s ease;
+}
+
+#productCarousel .product-card:hover {
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    background-color: #8f2aa9;
+    transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+
+}
+
+
+/* Product image size control */
+#productCarousel img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+/* Product title */
+#productCarousel h6 {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+
+/* Product price */
+#productCarousel p {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+
+
+/* ============================= */
+/* CAROUSEL ARROWS ON IMAGE */
+/* ============================= */
+
+#productCarousel .carousel-control-prev,
+#productCarousel .carousel-control-next {
+    width: 5%;
+    top: 40%;
+    opacity: 1;
+}
+
+/* Push arrows slightly inward */
+#productCarousel .carousel-control-prev {
+    margin-top: -10%;
+    margin-left: 1%;
+    left: -5px;
+}
+
+#productCarousel .carousel-control-next {
+     margin-top: -10%;
+         margin-right: 1%;
+    right: -5px;
+}
+
+
+
+/* ============================= */
+/* OPTIONAL – smoother slide */
+/* ============================= */
+#productCarousel .carousel-item {
+    transition: transform 0.6s ease-in-out;
+}
+
+.product-image-wrap {
+    position: relative;
+    overflow: hidden;
+}
+
+.product-icons {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 6px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.product-card:hover .product-icons {
+    opacity: 1;
+}
+
+.product-icons .icon {
+    width: 38px;
+    height: 38px;
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.product-icons .icon:hover {
+    background-color: #8f2aa9;
+}
+
+/* FULL_SIZE_IMAGE */
+
+/* Reset margin issues */
+body {
+  margin: 0;
+}
+
+/* Main background section */
+.Relax {
+  min-height: 500px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  width: 100%;
+  height: 500px;
+  margin-top: 3%;
+  margin-bottom: 2%;
+}
+
+
+
+
+/* Content styling */
+.Relax-content {
+  text-align: center;
+  color: #ffffff;
+  max-width: 800px;
+  padding: 20px;
+    margin-left: 50%;
+
+}
+
+/* Headings */
+.Relax-content h2 {
+    text-align: center;
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+/* Paragraph */
+.Relax-content p {
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+/* Button */
+.shop-btn {
+  display: inline-block;
+  background-color: #000;
+  color: #fff;
+  padding: 12px 28px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.shop-btn:hover {
+  background-color: #5a106d;
+      transition: all 0.5s ease;
+
+}
+
+
+
+
+/* ============================= */
+/* FUTURE CAROUSEL  */
+/* ============================= */
+
+#futureCarousel .carousel-inner {
+    overflow: visible;
+}
+
+#futureCarousel .carousel-item .row {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#futureCarousel .col-md-3 {
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+#futureCarousel .product-card {
+    background: #ffffff;
+    border: 1px solid #eeeeee;
+    padding: 15px;
+    transition: box-shadow 0.3s ease;
+}
+
+#futureCarousel .product-card:hover {
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    background-color: #8f2aa9;
+    transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#futureCarousel img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+#futureCarousel h6 {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+
+#futureCarousel p {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+#futureCarousel .carousel-control-prev,
+#futureCarousel .carousel-control-next {
+    width: 5%;
+    top: 40%;
+    opacity: 1;
+}
+
+#futureCarousel .carousel-control-prev {
+    margin-top: -10%;
+    margin-left: 1%;
+    left: -5px;
+}
+
+#futureCarousel .carousel-control-next {
+    margin-top: -10%;
+    margin-right: 1%;
+    right: -5px;
+}
+
+#futureCarousel .carousel-item {
+    transition: transform 0.6s ease-in-out;
+}
+
+.product-icons a {
+    text-decoration: none;
+}
+
+
+/* ============================= */
+/* QUICK VIEW  */
+/* ============================= */
+
+
+/* CENTER QUICK VIEW MODAL */
+#quickViewModal .modal-dialog {
+  max-width: 900px;   /* adjust if needed */
+  margin: auto;
+}
+
+/* WHITE QUICK VIEW BOX */
+#quickViewModal .modal-content {
+  background: #fff;
+  border-radius: 6px;
+  max-width: 50%;
+  margin-left: auto;
+}
+
+/* DARK BACKDROP */
+.modal-backdrop.show {
+  opacity: 0.8;
+  background-color: #000;
+}
+
+/* IMAGE CONTROL */
+#quickViewImage {
+  max-height: 400px;
+  object-fit: contain;
+}
+
+/* FORCE MODAL TO CENTER */
+#quickViewModal.show {
+  display: flex ;
+  align-items: center ;
+  justify-content: center ;
+}
+
+/* FIX DIALOG WIDTH + CENTER */
+#quickViewModal .modal-dialog {
+  margin: 0 ;
+  max-width: 900px;
+}

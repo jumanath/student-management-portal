@@ -1,0 +1,639 @@
+{% extends "students/header.html" %}
+{% block content %}
+
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        margin: 0;
+        background: #f4f7fb;
+    }
+
+    .update-page {
+        width: 600px;
+        margin: 30px auto;
+        padding: 28px 32px 25px;
+        background: #ffffff;
+        border-radius: 10px;
+        border: 1px solid #e1e7ee;
+        box-shadow: 0 6px 20px rgba(0, 66, 130, 0.08);
+    }
+
+
+    /* HEADER */
+
+    .page-header {
+        text-align: center;
+        margin-bottom: 25px;
+        padding-bottom: 17px;
+        border-bottom: 1px solid #e5e9ee;
+    }
+
+    .page-header h1 {
+        color: #004282;
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+    .page-header p {
+        margin-top: 5px;
+        color: #fe0000;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+
+    /* MESSAGES */
+
+    .success-message {
+        background: #e8f7ee;
+        color: #198754;
+        border: 1px solid #b7e4c7;
+        padding: 9px 12px;
+        border-radius: 5px;
+        text-align: center;
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 18px;
+    }
+
+    .error-message {
+        background: #fdecec;
+        color: #dc3545;
+        border: 1px solid #f5c2c7;
+        padding: 9px 12px;
+        border-radius: 5px;
+        text-align: center;
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 18px;
+    }
+
+
+    /* SEARCH */
+
+    .search-box {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 25px;
+    }
+
+    .search-box input {
+        flex: 1;
+        height: 38px;
+        padding: 0 11px;
+        border: 1px solid #d4dce5;
+        border-radius: 5px;
+        outline: none;
+        font-size: 13px;
+    }
+
+    .search-box input:focus {
+        border-color: #004282;
+        box-shadow: 0 0 0 3px rgba(0, 66, 130, 0.09);
+    }
+
+    .search-btn {
+        height: 38px;
+        padding: 0 20px;
+        border: none;
+        border-radius: 5px;
+        background: #004282;
+        color: white;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .search-btn:hover {
+        background: #003466;
+    }
+
+
+    /* FORM */
+
+    .form-group {
+        display: grid;
+        grid-template-columns: 145px 1fr;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 13px;
+    }
+
+    .form-group label {
+        color: #26364a;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .form-group input,
+    .form-group select {
+        width: 100%;
+        height: 38px;
+        padding: 0 11px;
+        border: 1px solid #d4dce5;
+        border-radius: 5px;
+        outline: none;
+        background: #ffffff;
+        color: #333333;
+        font-size: 13px;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+        border-color: #004282;
+        box-shadow: 0 0 0 3px rgba(0, 66, 130, 0.09);
+    }
+
+
+    /* REGISTRATION NUMBER */
+
+    .registration-input {
+        background: #eef4f9 !important;
+        font-weight: 600;
+        color: #004282 !important;
+    }
+
+
+    /* BALANCE */
+
+    .balance-input {
+        background: #eef4f9 !important;
+        color: #004282 !important;
+        font-weight: 700;
+        cursor: not-allowed;
+    }
+
+
+    /* BUTTON */
+
+    .update-button-area {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 23px;
+        padding-top: 18px;
+        border-top: 1px solid #e5e9ee;
+    }
+
+    .update-button {
+        height: 38px;
+        padding: 0 25px;
+        border: none;
+        border-radius: 5px;
+        background:  #004282;
+        color: white;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .update-button:hover {
+        background: #0f2e49;
+    }
+
+     .backtohomearea {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 23px;
+        padding-top: 18px;
+        border-top: 1px solid #e5e9ee;
+        gap: 10px;
+    }
+
+    .backtohome {
+        height: 38px;
+        padding: 0 25px;
+        border: none;
+        border-radius: 5px;
+        background: green;
+        color: white;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .backtohome:hover {
+        background: rgb(2, 86, 2);
+    }
+
+
+
+
+    @media (max-width: 700px) {
+
+        .update-page {
+            width: 92%;
+            padding: 25px 22px;
+        }
+
+        .form-group {
+            grid-template-columns: 1fr;
+            gap: 6px;
+        }
+
+        .search-box {
+            flex-direction: column;
+        }
+
+        .search-btn {
+            width: 100%;
+        }
+
+    }
+
+</style>
+
+
+<div class="update-page">
+
+    <!-- HEADER -->
+
+    <div class="page-header">
+
+        <h1>GTEC Education</h1>
+
+        <p>Update Student</p>
+
+    </div>
+
+
+    <!-- SUCCESS MESSAGE -->
+
+    {% if success %}
+
+        <div class="success-message">
+            ✓ {{ success }}
+        </div>
+
+    {% endif %}
+
+
+    <!-- ERROR MESSAGE -->
+
+    {% if error %}
+
+        <div class="error-message">
+            ⚠ {{ error }}
+        </div>
+
+    {% endif %}
+
+
+    <!-- SEARCH STUDENT -->
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                name="registration_no"
+                placeholder="Enter Registration No"
+                value="{{ student.registration_no|default:'' }}"
+                required
+            >
+
+            <button
+                type="submit"
+                name="action"
+                value="search"
+                class="search-btn"
+            >
+                Search
+            </button>
+
+        </div>
+
+    </form>
+
+
+    <!-- STUDENT DETAILS -->
+
+    {% if student %}
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <input
+            type="hidden"
+            name="registration_no"
+            value="{{ student.registration_no }}"
+        >
+
+
+        <!-- Registration No -->
+
+        <div class="form-group">
+
+            <label>Registration No</label>
+
+            <input
+                type="text"
+                value="{{ student.registration_no }}"
+                class="registration-input"
+                readonly
+            >
+
+        </div>
+
+
+        <!-- Name -->
+
+        <div class="form-group">
+
+            <label>Name</label>
+
+            <input
+                type="text"
+                name="name"
+                value="{{ student.name }}"
+                required
+            >
+
+        </div>
+
+
+        <!-- Course -->
+
+        <div class="form-group">
+
+            <label>Course</label>
+
+            <select name="course" required>
+
+                <option value="">Select course</option>
+
+                <option value="Python"
+                    {% if student.course == "Python" %}selected{% endif %}>
+                    Python
+                </option>
+
+                <option value="Python Django"
+                    {% if student.course == "Python Django" %}selected{% endif %}>
+                    Python Django
+                </option>
+
+                <option value="Data Analytics"
+                    {% if student.course == "Data Analytics" %}selected{% endif %}>
+                    Data Analytics
+                </option>
+
+                <option value="Digital Marketing"
+                    {% if student.course == "Digital Marketing" %}selected{% endif %}>
+                    Digital Marketing
+                </option>
+
+                <option value="Full Stack Development"
+                    {% if student.course == "Full Stack Development" %}selected{% endif %}>
+                    Full Stack Development
+                </option>
+
+                <option value="Web Development"
+                    {% if student.course == "Web Development" %}selected{% endif %}>
+                    Web Development
+                </option>
+
+                <option value="Graphic Designing"
+                    {% if student.course == "Graphic Designing" %}selected{% endif %}>
+                    Graphic Designing
+                </option>
+
+                <option value="MS Office"
+                    {% if student.course == "MS Office" %}selected{% endif %}>
+                    MS Office
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- Join Date -->
+
+        <div class="form-group">
+
+            <label>Join Date</label>
+
+            <input
+                type="date"
+                id="join_date"
+                name="join_date"
+                value="{{ student.join_date|date:'d-m-y' }}"
+                required
+            >
+
+        </div>
+
+
+        <!-- Course Fees -->
+
+        <div class="form-group">
+
+            <label>Course Fees</label>
+
+            <input
+                type="number"
+                id="course_fees"
+                name="course_fees"
+                value="{{ student.course_fees }}"
+                min="0"
+                step="0.01"
+                required
+            >
+
+        </div>
+
+
+        <!-- Paid Fees -->
+
+        <div class="form-group">
+
+            <label>Paid Fees</label>
+
+            <input
+                type="number"
+                id="paid_fees"
+                name="paid_fees"
+                value="{{ student.paid_fees }}"
+                min="0"
+                step="0.01"
+                required
+            >
+
+        </div>
+
+
+        <!-- Balance -->
+
+        <div class="form-group">
+
+            <label>Balance</label>
+
+            <input
+                type="number"
+                id="balance"
+                value="{{ student.balance }}"
+                class="balance-input"
+                readonly
+            >
+
+        </div>
+
+        <div class="form-group">
+                    <label>To pay</label>
+
+            <input
+                type="number"
+                id="to_pay"
+                name="to_pay"
+                placeholder="Enter monthly paid amount"
+                min="0"
+                step="0.01"
+                value="{{ student.to_pay }}"
+            >
+        </div>
+
+
+        <!-- Certificate -->
+
+        <div class="form-group">
+
+            <label>Certificate</label>
+
+            <select name="certificate" required>
+
+                <option value="Issued"
+                    {% if student.certificate == "Issued" %}selected{% endif %}>
+                    Issued
+                </option>
+
+                <option value="Pending"
+                    {% if student.certificate == "Pending" %}selected{% endif %}>
+                    Pending
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- Remarks -->
+
+        <div class="form-group">
+
+            <label>Remarks</label>
+
+            <input
+                type="text"
+                name="remarks"
+                value="{{ student.remarks }}"
+                placeholder="Enter the remark"
+            >
+
+        </div>
+
+
+        <!-- UPDATE BUTTON -->
+
+        <div class="backtohomearea">
+
+              <button
+                type="submit"
+                name="action"
+                value="backtohome"
+                class="backtohome"
+            >
+                <a href="{% url 'home' %}" style="color: white;text-decoration: none;">Back to Home</a>
+            </button>
+
+            <button
+                type="submit"
+                name="action"
+                value="update"
+                class="update-button"
+            >
+                Update Student
+            </button>
+
+        </div>
+
+    </form>
+
+    {% endif %}
+
+</div>
+
+
+<script>
+
+    const courseFees = document.getElementById("course_fees");
+    const paidFees = document.getElementById("paid_fees");
+    const balance = document.getElementById("balance");
+
+
+    function calculateBalance() {
+
+        if (!courseFees || !paidFees || !balance) {
+            return;
+        }
+
+        const course = parseFloat(courseFees.value) || 0;
+        const paid = parseFloat(paidFees.value) || 0;
+
+        let result = course - paid;
+
+        if (result < 0) {
+            result = 0;
+        }
+
+        balance.value = result;
+    }
+
+
+    if (courseFees && paidFees) {
+
+        courseFees.addEventListener(
+            "input",
+            calculateBalance
+        );
+
+        paidFees.addEventListener(
+            "input",
+            calculateBalance
+        );
+
+    }
+
+
+    setTimeout(function() {
+
+        const successMessage =
+            document.querySelector(".success-message");
+
+        const errorMessage =
+            document.querySelector(".error-message");
+
+        if (successMessage) {
+            successMessage.style.display = "none";
+        }
+
+        if (errorMessage) {
+            errorMessage.style.display = "none";
+        }
+
+    }, 10000);
+
+</script>
+
+
+{% endblock %}
+

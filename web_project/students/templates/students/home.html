@@ -1,0 +1,614 @@
+{% extends "students/header.html" %}
+{% block content %}
+
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        margin: 0;
+        background: #f4f7fb;
+    }
+
+    .student-page {
+        width: 600px;
+        margin: 30px auto;
+        padding: 28px 32px 25px;
+        background: #ffffff;
+        border-radius: 10px;
+        border: 1px solid #e1e7ee;
+        box-shadow: 0 6px 20px rgba(0, 66, 130, 0.08);
+        transition: 0.3s ease;
+    }
+
+    .student-page:hover {
+        box-shadow: 0 10px 28px rgba(0, 66, 130, 0.13);
+    }
+
+
+    /* HEADER */
+
+    .page-header {
+        text-align: center;
+        margin-bottom: 25px;
+        padding-bottom: 17px;
+        border-bottom: 1px solid #e5e9ee;
+    }
+
+    .page-header h1 {
+        margin: 0;
+        color: #004282;
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+    .page-header p {
+        margin: 5px 0 0;
+        color: #fe0000;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+
+    /* SUCCESS MESSAGE */
+
+    .success-message {
+        background: #e8f7ee;
+        color: #198754;
+        border: 1px solid #b7e4c7;
+        padding: 9px 12px;
+        border-radius: 5px;
+        text-align: center;
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 18px;
+    }
+
+
+    /* ERROR MESSAGE */
+
+    .error-message {
+        background: #fdecec;
+        color: #dc3545;
+        border: 1px solid #f5c2c7;
+        padding: 9px 12px;
+        border-radius: 5px;
+        text-align: center;
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 18px;
+    }
+
+
+    /* FORM */
+
+    .form-group {
+        display: grid;
+        grid-template-columns: 145px 1fr;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 13px;
+    }
+
+    .form-group label {
+        color: #26364a;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+
+    /* INPUTS */
+
+    .form-group input,
+    .form-group select {
+        width: 100%;
+        height: 38px;
+        padding: 0 11px;
+        border: 1px solid #d4dce5;
+        border-radius: 5px;
+        outline: none;
+        background: #ffffff;
+        color: #333333;
+        font-size: 13px;
+        transition: 0.2s ease;
+    }
+
+    .form-group input:hover,
+    .form-group select:hover {
+        border-color: #7d9bb7;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+        border-color: #004282;
+        box-shadow: 0 0 0 3px rgba(0, 66, 130, 0.09);
+        transform: translateY(-1px);
+    }
+
+    .form-group input::placeholder {
+        color: #a1a9b3;
+    }
+
+
+    /* BALANCE */
+
+    .balance-input {
+        background: #eef4f9 !important;
+        color: #004282 !important;
+        font-weight: 700;
+        cursor: not-allowed;
+    }
+
+
+    /* BUTTON AREA */
+
+    .buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 9px;
+        margin-top: 23px;
+        padding-top: 18px;
+        border-top: 1px solid #e5e9ee;
+    }
+
+    .buttons button {
+        height: 37px;
+        padding: 0 21px;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.2s ease;
+    }
+
+    .buttons button:hover {
+        transform: translateY(-2px);
+    }
+
+    .buttons button:active {
+        transform: translateY(0);
+    }
+
+
+    /* SAVE */
+
+    .add-btn {
+        background: #004282;
+    }
+
+    .add-btn:hover {
+        background: #003466;
+        box-shadow: 0 4px 10px rgba(0, 66, 130, 0.25);
+    }
+
+
+    /* UPDATE */
+
+    .update-btn {
+        background: #245f91;
+    }
+
+    .update-btn:hover {
+        background: #1b4d78;
+        box-shadow: 0 4px 10px rgba(36, 95, 145, 0.25);
+    }
+
+    /* DELETE */
+    .delete-btn {
+        background: red;
+    }
+
+    .delete-btn:hover {
+        background: rgb(179, 4, 4);
+        box-shadow: 0 4px 10px rgba(36, 95, 145, 0.25);
+    }
+
+
+
+    /* EXPORT */
+
+    .export-btn {
+        background: #198754;
+    }
+
+    .export-btn:hover {
+        background: #146c43;
+        box-shadow: 0 4px 10px rgba(25, 135, 84, 0.25);
+    }
+
+
+    /* MOBILE */
+
+    @media (max-width: 700px) {
+
+        .student-page {
+            width: 92%;
+            margin: 20px auto;
+            padding: 25px 22px;
+        }
+
+        .form-group {
+            grid-template-columns: 1fr;
+            gap: 6px;
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            font-size: 13px;
+        }
+
+        .buttons {
+            justify-content: stretch;
+        }
+
+        .buttons button {
+            flex: 1;
+            padding: 0 12px;
+        }
+    }
+
+</style>
+
+
+<div class="student-page">
+
+    <!-- HEADER -->
+
+    <div class="page-header">
+
+        <h1>GTEC Education</h1>
+
+        <p>Student Management</p>
+
+    </div>
+
+
+    <!-- SUCCESS MESSAGE -->
+
+    {% if success %}
+        <div class="success-message">
+            ✓ {{ success }}
+        </div>
+    {% endif %}
+
+
+    <!-- ERROR MESSAGE -->
+
+    {% if error %}
+        <div class="error-message">
+            ⚠ {{ error }}
+        </div>
+    {% endif %}
+
+
+    <!-- FORM -->
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+
+        <!-- Registration -->
+
+        <div class="form-group">
+
+            <label>Registration No</label>
+
+            <input
+                type="text"
+                name="registration_no"
+                placeholder="Enter registration number"
+                required
+            >
+
+        </div>
+
+
+        <!-- Name -->
+
+        <div class="form-group">
+
+            <label>Name</label>
+
+            <input
+                type="text"
+                name="name"
+                placeholder="Enter student name"
+                required
+            >
+
+        </div>
+
+
+        <!-- Course -->
+
+        <div class="form-group">
+
+            <label>Course</label>
+
+            <select name="course" required>
+
+                <option value="">Select course</option>
+
+                <option value="Python">
+                    Python
+                </option>
+
+                <option value="Python Django">
+                    Python Django
+                </option>
+
+                <option value="Data Analytics">
+                    Data Analytics
+                </option>
+
+                <option value="Digital Marketing">
+                    Digital Marketing
+                </option>
+
+                <option value="Full Stack Development">
+                    Full Stack Development
+                </option>
+
+                <option value="Web Development">
+                    Web Development
+                </option>
+
+                <option value="Graphic Designing">
+                    Graphic Designing
+                </option>
+
+                <option value="MS Office">
+                    MS Office
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- Join Date -->
+
+        <div class="form-group">
+
+            <label>Join Date</label>
+
+            <input
+                type="date"
+                name="join_date"
+                required
+            >
+
+        </div>
+
+
+        <!-- Course Fees -->
+
+        <div class="form-group">
+
+            <label>Course Fees</label>
+
+            <input
+                type="number"
+                id="course_fees"
+                name="course_fees"
+                placeholder="Enter course fees"
+                min="0"
+                step="0.01"
+                required
+            >
+
+        </div>
+
+
+        <!-- Paid Fees -->
+
+        <div class="form-group">
+
+            <label>Paid Fees</label>
+
+            <input
+                type="number"
+                id="paid_fees"
+                name="paid_fees"
+                placeholder="Enter paid amount"
+                min="0"
+                step="0.01"
+                required
+            >
+
+        </div>
+
+
+        <!-- Balance -->
+
+        <div class="form-group">
+
+            <label>Balance</label>
+
+            <input
+                type="number"
+                id="balance"
+                name="balance"
+                placeholder="Automatic"
+                readonly
+                class="balance-input"
+            >
+
+        </div>
+
+
+         <div class="form-group">
+
+            <label>To pay</label>
+
+            <input
+                type="number"
+                id="to_pay"
+                name="to_pay"
+                placeholder="Enter monthly paid amount"
+                min="0"
+                step="0.01"
+            >
+
+        </div>
+
+
+        <!-- Certificate -->
+
+        <div class="form-group">
+
+            <label>Certificate</label>
+
+            <select name="certificate" required>
+
+                <option value="">
+                    Select status
+                </option>
+
+                <option value="Issued">
+                    Issued
+                </option>
+
+                <option value="Pending">
+                    Pending
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- Remarks -->
+
+        <div class="form-group">
+
+            <label>Remarks</label>
+
+            <input
+                type="text"
+                name="remarks"
+                placeholder="Enter the remark"
+            >
+
+        </div>
+
+
+        <!-- BUTTONS -->
+
+        <div class="buttons">
+
+            <button
+                type="submit"
+                name="action"
+                value="save"
+                class="add-btn"
+            >
+                Save
+            </button>
+
+
+           <button
+                type="button"
+                class="update-btn"
+            >
+                 <a href="{% url 'update_student' %}" style="color: white;text-decoration: none;">
+                   Update
+                </a> 
+            </button>
+
+              <button
+                type="button"
+                name="action"
+                value="delete"
+                class="delete-btn"
+            >
+                <a href="{% url 'delete_student' %}" style="color: white;text-decoration: none;">
+                    Delete
+                </a>            
+            </button>
+
+            <a
+    href="{% url 'export_students' %}"
+    class="export-btn"
+    style="
+        color: white;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 37px;
+        padding: 0 21px;
+        border-radius: 5px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.2s ease;
+    "
+>
+    Export
+</a>
+          
+
+        </div>
+
+    </form>
+
+</div>
+
+
+<script>
+
+    const courseFees = document.getElementById("course_fees");
+    const paidFees = document.getElementById("paid_fees");
+    const balance = document.getElementById("balance");
+
+
+    function calculateBalance() {
+
+        const course = parseFloat(courseFees.value) || 0;
+        const paid = parseFloat(paidFees.value) || 0;
+
+        let result = course - paid;
+
+        if (result < 0) {
+            result = 0;
+        }
+
+        balance.value = result;
+    }
+
+
+    courseFees.addEventListener("input", calculateBalance);
+    paidFees.addEventListener("input", calculateBalance);
+
+
+    /* AUTO HIDE SUCCESS / ERROR MESSAGE AFTER 10 SECONDS */
+
+    setTimeout(function() {
+
+        const successMessage = document.querySelector(".success-message");
+        const errorMessage = document.querySelector(".error-message");
+
+        if (successMessage) {
+            successMessage.style.display = "none";
+        }
+
+        if (errorMessage) {
+            errorMessage.style.display = "none";
+        }
+
+    }, 10000);
+
+</script>
+
+
+{% endblock %}
+
